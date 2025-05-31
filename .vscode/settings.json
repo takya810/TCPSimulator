@@ -1,4 +1,5 @@
 {
     "markdown.preview.scrollPreviewWithEditor": true,
-    "markdown.preview.doubleClickToSwitchToEditor": true
+    "markdown.preview.doubleClickToSwitchToEditor": true,
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

@@ -1,12 +1,40 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.beryx.jlink' version '2.25.0'
 }
 
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
-mainClassName = 'Main' // 後でMainクラスを作成してください
+application {
+    mainClass = 'app.Main'
+}
+
+jlink {
+    imageName = 'TCPSimulator'
+    launcher {
+        name = 'TCPSimulator'
+    }
+    jpackage {
+        // OSごとにtypeを変更可能: dmg, pkg, exe, msi, deb, rpm など
+        installerType = (org.gradle.internal.os.OperatingSystem.current().isMacOsX()) ? 'dmg' : 'exe'
+        appVersion = '1.0.0'
+        vendor = 'takya810'
+        description = 'TCP通信シミュレータ（JRE同梱）'
+        // copyright = 'Copyright (c) 2025 takya810' // サポート外のためコメントアウト
+    }
+}
+
+distributions {
+    main {
+        contents {
+            from('libs') { into 'libs' }
+            from('jre') { into 'jre' }
+            from('src/main/scripts') { into 'bin' }
+        }
+    }
+}
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
@@ -14,12 +42,4 @@ dependencies {
 
 test {
     useJUnitPlatform()
-}
-
-distributions {
-    main {
-        contents {
-            from('src')
-        }
-    }
 }

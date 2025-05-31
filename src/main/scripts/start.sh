@@ -1,0 +1,3 @@
+#!/bin/sh
+DIR=$(cd "$(dirname "$0")"; pwd)
+"$DIR/../jre/bin/java" -jar "$DIR/../libs/TCPSimulator.jar"
