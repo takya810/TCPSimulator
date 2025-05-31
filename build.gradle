@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+mainClassName = 'Main' // 後でMainクラスを作成してください
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+distributions {
+    main {
+        contents {
+            from('src')
+        }
+    }
+}
